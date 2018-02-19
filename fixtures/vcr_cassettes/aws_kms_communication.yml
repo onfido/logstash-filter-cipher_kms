@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://kms.eu-west-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"KeyId":"arn:aws:kms:eu-west-1:666666666666:alias/kms-key","KeySpec":"AES_256","EncryptionContext":{"kms_cmk_id":"arn:aws:kms:eu-west-1:666666666666:alias/kms-key"}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.1
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby2/2.10.96 jruby/2.3.3 java
+      X-Amz-Target:
+      - TrentService.GenerateDataKey
+      X-Amz-Date:
+      - 20171211T111005Z
+      Host:
+      - kms.eu-west-1.amazonaws.com
+      X-Amz-Content-Sha256:
+      - ba8efb111111111111b34f50ee666a46f901962a9da855ac59bca915e591ecf3
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=fake_aws_key/20171211/eu-west-1/kms/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=c259c9e137f1b4e087htda1111jfj5a6bc13aa3c3986faa86ba9e006a53292ac
+      Content-Length:
+      - '184'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - d76f6616-de63-11e7-983e-6baf6cefc830
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '414'
+    body:
+      encoding: UTF-8
+      string: '{"CiphertextBlob":"AQIDAHifzFKjjcNsnGExAsbzzzztttaa44hhhf4dhcft+PeItwGdybaIow6CNMCkk7YQPzmRAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMzVoXakjGKdM7rifrAgEQgDsxqgFkALFoXEZdUqHyenaf6qJ/MWhWmMRBZHOv+ZTmUpccHLV2RPAek2bo2NuSFUvw09GB6Bm2mfOemA==","KeyId":"arn:aws:kms:eu-west-1:666666666666:key/dd869k2k-aa12-4253-qq14-999aa0c1fbab","Plaintext":"IV/KBW/lBuEC6BDb5uv/DsMPGULBCWm/0xKK662s8vc="}'
+    http_version:
+  recorded_at: Mon, 11 Dec 2017 11:10:05 GMT
+- request:
+    method: post
+    uri: https://kms.eu-west-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"CiphertextBlob":"AQIDAHifzFKjjcNsnGExAsbzzzztttaa44hhhf4dhcft+PeItwGdybaIow6CNMCkk7YQPzmRAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMzVoXakjGKdM7rifrAgEQgDsxqgFkALFoXEZdUqHyenaf6qJ/MWhWmMRBZHOv+ZTmUpccHLV2RPAek2bo2NuSFUvw09GB6Bm2mfOemA==","EncryptionContext":{"kms_cmk_id":"arn:aws:kms:eu-west-1:666666666666:alias/kms-key"}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.1
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby2/2.10.96 jruby/2.3.3 java
+      X-Amz-Target:
+      - TrentService.Decrypt
+      X-Amz-Date:
+      - 20171211T111005Z
+      Host:
+      - kms.eu-west-1.amazonaws.com
+      X-Amz-Content-Sha256:
+      - c356a551f796f468bfbadd77466fb1efe30cd65aa3a759d28ebcc5c83bbbeb5b
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=fake_aws_key/20171211/eu-west-1/kms/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=1b034770a2fb9f56f5714214183ed8zzzzzzzzzz1250ed93644a3d43af734471
+      Content-Length:
+      - '364'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - d7844df7-de63-11e7-ac01-47d652e369d5
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '146'
+    body:
+      encoding: UTF-8
+      string: '{"KeyId":"arn:aws:kms:eu-west-1:666666666666:key/dd869k2k-aa12-4253-qq14-999aa0c1fbab","Plaintext":"IV/KBW/lBuEC6BDb5uv/DsMPGULBCWm/0xKK662s8vc="}'
+    http_version:
+  recorded_at: Mon, 11 Dec 2017 11:10:05 GMT
+recorded_with: VCR 4.0.0

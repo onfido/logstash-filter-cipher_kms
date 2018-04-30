@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
   # Gem dependencies
   s.add_runtime_dependency "logstash-core-plugin-api", "~> 2.1.1"
   s.add_development_dependency 'logstash-devutils'
-  s.add_dependency('activesupport')
   s.add_dependency('aws-sdk', '~> 2')
   s.add_development_dependency('vcr', '~> 4.0.0')
   s.add_development_dependency('webmock', '~> 3.1.1')

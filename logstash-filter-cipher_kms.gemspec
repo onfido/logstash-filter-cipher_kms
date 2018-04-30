@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'logstash-filter-cipher_kms'
-  s.version       = '0.1.0'
+  s.version       = '0.1.1'
   s.licenses      = ['Apache License (2.0)']
   s.summary       = 'This is a Logstash plugin to allow data
                       encryption/decryption using AWS KMS.'
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.metadata = { "logstash_plugin" => "true", "logstash_group" => "filter" }
 
   # Gem dependencies
-  s.add_runtime_dependency "logstash-core-plugin-api", "~> 2.0"
+  s.add_runtime_dependency "logstash-core-plugin-api", "~> 2.1.1"
   s.add_development_dependency 'logstash-devutils'
   s.add_dependency('activesupport')
   s.add_dependency('aws-sdk', '~> 2')

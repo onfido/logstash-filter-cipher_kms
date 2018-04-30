@@ -134,8 +134,8 @@ class LogStash::Filters::CipherKms < LogStash::Filters::Base
   def filter(event)
     # If decrypt or encrypt fails, we keep it it intact.
     begin
-      if event.get(@source).blank?
-        @logger.debug("Event to filter, event 'source' field: " + @source + ' was nil or blank, doing nothing.')
+      if blank?(event.get(@source))
+        @logger.debug("Event to filter, event 'source' field: " + @source + ' was nil or empty, doing nothing.')
         return
       end
 
@@ -156,12 +156,16 @@ class LogStash::Filters::CipherKms < LogStash::Filters::Base
         filter_matched(event)
       end
     rescue => e
-      @logger.warn('Exception caught on cipher filter', event: event, error: e)
-      # force a re-initialize on error to be safe
-      init_cipher
+      handle_unexpected_error(event, e)
     ensure
       rotate_cipher_if_needed
     end
+  end
+
+  def handle_unexpected_error(event, error)
+    @logger.warn('Exception caught on cipher filter', event: event, error: error)
+    # force a re-initialize on error to be safe
+    init_cipher
   end
 
   def encrypt(data)
@@ -224,10 +228,10 @@ class LogStash::Filters::CipherKms < LogStash::Filters::Base
     @logger.debug('Encryption Context: ' + @encryption_context.to_s, plugin: self.class.name)
 
     credentials = nil
-    if !@access_key_id.blank? && !@secret_access_key.blank?
+    if !blank?(@access_key_id) && !blank?(@secret_access_key)
       credentials = Aws::Credentials.new(@access_key_id, @secret_access_key)
       @logger.debug('Using Static Credentials', plugin: self.class.name)
-    elsif !@aws_shared_credentials_path.blank? || !@aws_profile.blank?
+    elsif !blank?(@aws_shared_credentials_path) || !blank?(@aws_profile.blank)
       credentials = Aws::SharedCredentials.new(path: @aws_shared_credentials_path, profile_name: @aws_profile)
       @logger.debug('Using Shared Credentials', plugin: self.class.name)
     elsif @aws_instance_profile
@@ -276,4 +280,9 @@ class LogStash::Filters::CipherKms < LogStash::Filters::Base
     true
   end
 
+  private
+
+  def blank?(data)
+    data.nil? || data.empty?
+  end
 end

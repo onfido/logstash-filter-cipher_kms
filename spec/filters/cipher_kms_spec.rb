@@ -137,8 +137,14 @@ describe LogStash::Filters::CipherKms do
             'kms_cmk_id' => 'arn:aws:kms:eu-west-1:666666666666:alias/kms-key'
         }
       )
-      plain_text = 'foo'
-      event = LogStash::Event.new(LogStash::Json.load("{\"message\":\"#{plain_text}\"}"))
+      msg = {
+        message: {
+          foo: 'bar'
+        }
+      }.to_json
+
+      event = LogStash::Event.new(LogStash::Json.load(msg))
+      expect(encrypter).not_to receive(:handle_unexpected_error)
       encrypter.register
       decrypter.register
 
@@ -147,7 +153,7 @@ describe LogStash::Filters::CipherKms do
         decrypter.filter(event)
       end
 
-      expect(event.get('message')).to eq(plain_text)
+      expect(event.get('message')).to eq({ "foo" => "bar" })
     end
   end
 end
